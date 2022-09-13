@@ -1,27 +1,31 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Fade } from 'react-reveal'
 
-function Section({ title, description, backgroundImg, leftBtnText, rightBtnText }) {
+function Section({ title, description, image, leftBtnText, rightBtnText }) {
     return (
-        <Container backgroundImg={backgroundImg}>
-            <ItemText>
-                <h1>{title}</h1>
-                <p>{description}</p>
-            </ItemText>
-
-            <Buttons>
-                <ButtonGroup>
-                    <LeftButton>
-                        {leftBtnText}
-                    </LeftButton>
-                    {rightBtnText &&
-                        <RightButton>
-                            {rightBtnText}
-                        </RightButton>
-                    }
-                </ButtonGroup>
-                <DownArrow src="/images/down-arrow.svg" />
-            </Buttons>
+        <Container image={image}>
+            <Fade bottom>
+                <ItemText>
+                    <h1>{title}</h1>
+                    <p>{description}</p>
+                </ItemText>
+            </Fade>
+            <Fade bottom>
+                <Buttons>
+                    <ButtonGroup>
+                        <LeftButton>
+                            {leftBtnText}
+                        </LeftButton>
+                        {rightBtnText &&
+                            <RightButton>
+                                {rightBtnText}
+                            </RightButton>
+                        }
+                    </ButtonGroup>
+                    <DownArrow src="/images/down-arrow.svg" />
+                </Buttons>
+            </Fade>
         </Container>
     )
 }
@@ -34,7 +38,7 @@ const Container = styled.div`
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-image: ${props => `url("/images/${props.backgroundImg}")`};
+    background-image: ${props => `url("/images/${props.image}")`};
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -44,6 +48,10 @@ const Container = styled.div`
 const ItemText = styled.div`
     padding-top: 15vh;
     text-align: center;
+
+    h1 {
+        margin-bottom: 10px;
+    }
 `
 
 const Buttons = styled.div`
@@ -68,10 +76,9 @@ const LeftButton = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 100px;
+    border-radius: 5px;
     opacity: 0.85;
-    text-transform: uppercase;
-    font-size: 12px;
+    font-size: 16px;
     cursor: pointer;
     margin: 8px;
 `
@@ -84,7 +91,7 @@ const RightButton = styled(LeftButton)`
 
 const DownArrow = styled.img`
     height: 40px;
-    animation: animateDown infinite 1.5s;
-    overflow-x: hidden;
+    color: red;
+    cursor: pointer;
 `
 
